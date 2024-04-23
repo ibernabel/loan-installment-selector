@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    
+    <!-- Google-Fonts-Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+ 
+    
+    <!-- noUiSlider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.js"></script>
+  
+    
+    <!-- wNumb.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+<!--     <script src="js/wnumb.min.js"></script> -->
+    
+    <!-- bootstrap 5.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<!--     <link rel="stylesheet" href="css/style.css"> -->
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card overflow-visible mt-4">
+            <div class="card-header cabecera p-3">
+                <h1 class="card-title text-white text-center ">¡Calcula tu pr&eacute;stamo aqu&iacute;!</h1>
+            </div>
+            <div class="card-body m-4">
+                <div class="card-subtitle mb-4">
+                    <p><strong>Quiero pagar:</strong></p>
+                </div>
+                <!-- form -->
+                <form action="" method="get">
+                    <!-- checkboxes -->
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="formCheckMensual" type="radio" name="frecuenciaPago" value="Mensual">
+                            <label for="formCheckMensual" class="form-check-label">Mensual</label>
+                        </div>
+                        <div class="form-check form-check-inline mb-5">
+                            <input class="form-check-input" id="formCheckQuincenal" type="radio" name="frecuenciaPago" value="Quincenal" checked>
+                            <label for="formCheckQuincenal" class="form-check-label">Quincenal</label>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!-- noUiSlider -->
+                        <!-- Monto -->
+                    <div class="form-group mt-4">
+                        <div class="slider-round" id="slider-round-1"></div>
+
+                        <div class="card-text d-flex justify-content-between mt-3 mb-4">
+                            <p class="">$3,000.00</p>
+                            <p class="m-4">$15,000.00</p>
+                        </div>
+                    </div>
+                        <!--  -->
+                        <!-- Plazo -->
+                    <div class="form-group mt-4">
+                        <div class="slider-round" id="slider-round-2"></div>
+
+                        <div class="card-text d-flex justify-content-between mt-3">
+                            <p class="">1 Mes</p>
+                            <p class="mb-4">12 Meses</p>
+                        </div>
+                    </div>
+                        <!--  -->
+                    
+                    <div class="card-text d-flex justify-content-between mt-3 fw-bold" id="calculoResultado">
+                        <p id="pagoFrecuencia">Pago Quincenal</p>
+                        <p id="pagoCuota">RD$1,190.00</p>
+                    </div>
+                    <div class="card-text d-flex justify-content-between mt-3 fw-bold" id="">
+                        <p id="frecuenciaParaPagar">Quincenas para pagar</p>
+                        <p id="plazoParaPagar">12 Quincenas</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="form-group">
+                            <input class="btn btn-primary w-100" type="button" value="¡Quiero este préstamo!">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
