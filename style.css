@@ -1,0 +1,100 @@
+html{
+    font-family: Inter, Ubuntu, 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+body {
+    max-width: 580px;
+  
+}
+.cabecera {
+    background-color: #004AA1 !important;
+    padding: 2rem;
+    box-shadow: 0px 3px 5px 0px rgba(135,135,135,0.5);
+
+}
+.header h1 {
+    color: white;
+}
+
+/* Estilos del slider deslizante */
+.slider-round {
+    height: .75rem;
+}
+
+.slider-round .noUi-target {
+    border-radius: 12px !important;
+    border: 0 !important;
+}
+
+.slider-round .noUi-connect {
+    background: #008FD5;
+    border-style: none;
+    border-radius: .75rem;
+}
+.slider-round .noUi-connects {
+    background: #EFF2F6;
+    border-radius: .75rem;
+    overflow: hidden;
+    z-index: 0;
+}
+.slider-round .noUi-touch-area {
+    background: #008FD5;
+        border-radius: 12px;
+    }
+.slider-round .noUi-touch-area:hover {
+    background: #006192;
+}
+            
+.slider-round .noUi-handle {
+    height: 1.5rem;
+    width: 1.5rem;
+    content: "";
+    top: -0.416rem;
+    /* right: -12px;  */
+    /* right is the half of the width*/
+    border: solid;
+    border-color: #ffffff;
+    border-width: .25rem;
+    border-radius: .75rem;
+    box-shadow: 0px 2px 3px 0px rgba(135,135,135,0.5);
+}
+.slider-round .noUi-handle:active {
+    transform: scale(.9);
+}
+.slider-round .noUi-tooltip {
+    /* top: -2rem; */
+    /* bottom: initial; */
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+    /* border: none; */
+    /* background-color: transparent; */
+    border-radius: .5rem;
+    border-color: rgba(0, 143, 213, .5) ;
+    box-shadow: 0px 3px 5px 0px rgba(135,135,135,0.5);
+    /* opacity: 1;
+    transition: opacity 1s; */
+
+}
+.slider-round .noUi-tooltip:hover {
+    border-color: rgba(0, 143, 213, 1) ;
+    
+}
+.slider-round .noUi-tooltip::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* parte inferior del tooltip */
+    left: 50%;
+    margin-left: -.375rem;
+    border-width: .375rem;
+    border-style: solid;
+    border-color: rgba(0, 143, 213, .8) transparent transparent transparent;
+}
+
+.slider-round .noUi-handle-lower::before {
+    display: none!important;
+}
+.slider-round .noUi-handle-lower::after {
+    display: none!important;
+}
+
