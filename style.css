@@ -1,3 +1,6 @@
+* {
+  border: 1px solid blue;
+}
 :root {
   --secondaryColor: #0066FF;
   --secondaryColorLight: #0066FF95;
@@ -58,11 +61,11 @@ body {
     height: 2rem;
     width: 2rem;
     content: "";
-    top: -0.416rem;
+    top: -0.55rem;
     /* right: -12px;  */
     /* right is the half of the width*/
     border: solid;
-    border-color: #ffffff;
+    border-color: var(--white);
     border-width: .3rem;
     border-radius: 2rem;
     box-shadow: 0px 2px 3px 0px rgba(135,135,135,0.5);
@@ -113,6 +116,3 @@ body {
   /*font-weight: bold;*/
   font-size: 1.5rem;
 }
-/** {
-  border: 1px solid blue;
-}*/

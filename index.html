@@ -70,28 +70,23 @@
             </div>
           </div>
           <!-- Result  -->
-          <div class="d-flex justify-content-between mt-3 mb-4 ">
-
+          <div class="d-flex mt-3 mb-4 ">
             <!-- checkboxes -->
-            <div>
-              <div class="card-subtitle ">
-                <p><strong>Frecuencia de Pago:*</strong></p>
+            <div class="form-group w-50">
+              <p class="fw-bold">Frecuencia de Pago:*</p>
+              <div class="form-check form-check">
+                <input class="form-check-input" id="formCheckQuincenal" type="radio" name="frecuenciaPago"
+                  value="Quincenal" checked>
+                <label for="formCheckQuincenal" class="form-check-label">Quincenal</label>
               </div>
-              <div class="form-group">
-                <div class="form-check form-check">
-                  <input class="form-check-input" id="formCheckQuincenal" type="radio" name="frecuenciaPago"
-                    value="Quincenal" checked>
-                  <label for="formCheckQuincenal" class="form-check-label">Quincenal</label>
-                </div>
-                <div class="form-check form-check mb-5">
-                  <input class="form-check-input" id="formCheckMensual" type="radio" name="frecuenciaPago"
-                    value="Mensual">
-                  <label for="formCheckMensual" class="form-check-label">Mensual</label>
-                </div>
+              <div class="form-check form-check mb-5">
+                <input class="form-check-input" id="formCheckMensual" type="radio" name="frecuenciaPago"
+                  value="Mensual">
+                <label for="formCheckMensual" class="form-check-label">Mensual</label>
               </div>
             </div>
 
-            <div class="card-text fw-bold mr-4">
+            <div class="card-text fw-bold w-50">
               <p id="pagoFrecuencia">Cuota Quincenal</p>
               <p class="show-monto-cuota me-5" id="pagoCuota">RD$1,065.00</p>
               <input id="inputMonto" type="hidden" name="plazo" value="10000">

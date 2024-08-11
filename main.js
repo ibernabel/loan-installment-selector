@@ -53,7 +53,7 @@ window.onload = function () {
       'min': 4,
       'max': 24
     },
-    start: [14],
+    start: [12],
     step: 1,
     connect: 'lower',
     tooltips: wNumb({
@@ -68,49 +68,45 @@ window.onload = function () {
   checkQuincenal.addEventListener('change', calcularCuota);
 
   function calcularCuota() {
-    valuePlazo = slider2.noUiSlider.get();
-    valuePlazo = Math.round(valuePlazo).toString();
 
-    monto = parseInt(slider1.noUiSlider.get());
-    // console.log(monto);   
-    plazo = parseInt(slider2.noUiSlider.get());
-    // console.log(plazo);  
-    prestamo = monto + gastosDeCierre;
-    // console.log(prestamo);
-    tasa = (checkMensual.checked ? tasaMensual : tasaQuincenal);
-    frecuencia = (checkMensual.checked ? "Mensual" : "Quincenal");
-
-    //plural = ( valuePlazo == 1 ) ?  "" : "";
-
-    startSelected = (this.value == "Mensual" || this.value == "Quincenal") ? ((checkMensual.checked) ? 8 : 14) : valuePlazo;
-    cantidadCuotasMinimas = "4 ";
+    cantidadCuotasMinimas = (checkMensual.checked) ? 2 : 4;
     cantidadCuotasMaximas = (checkMensual.checked) ? 12 : 24;
     frecuenciaLiteral = (checkMensual.checked) ? " Meses" : " Quincenas";
-    //frecuenciaLiteral = (checkMensual.checked) ? ( valuePlazo == 1 ) ?  " Mes" : " Meses" : ( valuePlazo == 1 ) ? " Quincena" : " Quincenas";
-
-    // console.log(tasa);   
-    capitalCuota = prestamo / plazo;
-    // console.log(capitalCuota);   
-    interes = prestamo * tasa;
-    // console.log(interes);   
-    montoCuota = capitalCuota + interes;
-    montoCuota = montoCuota.toFixed(2);
-    // console.log(montoCuota);   
-    labelPlazoStart.innerHTML = cantidadCuotasMinimas + frecuenciaLiteral;
-    labelPlazoEnd.innerHTML = cantidadCuotasMaximas.toString() + frecuenciaLiteral;
-    pagoFrecuencia.innerHTML = "Cuota " + frecuencia;
-    pagoCuota.innerHTML = currency(montoCuota);
-    //frecuenciaParaPagar.innerHTML = frecuenciaLiteral + " para pagar";
-    //plazoParaPagar.innerHTML = plazo + " " + frecuenciaLiteral;
 
     slider2.noUiSlider.updateOptions({
       range: {
-        'min': 4,
+        'min': cantidadCuotasMinimas,
         'max': cantidadCuotasMaximas
       },
-      start: [startSelected],
       tooltips: wNumb({ decimals: 0, suffix: frecuenciaLiteral })
     });
+
+    monto = parseInt(slider1.noUiSlider.get());
+    valuePlazo = parseInt(slider2.noUiSlider.get());
+    //console.log(valuePlazo);
+
+    //console.log(monto);
+    prestamo = monto + gastosDeCierre;
+    //console.log(prestamo);
+    tasa = (checkMensual.checked ? tasaMensual : tasaQuincenal);
+    frecuencia = (checkMensual.checked ? "Mensual" : "Quincenal");
+
+    capitalCuota = prestamo / valuePlazo;
+    // console.log(capitalCuota);   
+    interes = prestamo * tasa;
+    // console.log(interes);   
+    montoCuota = (capitalCuota + interes).toFixed(2);
+    //console.log(montoCuota);
+
+    // Codigo para manejar casos de nombre en singular. 1 mes o quinecana
+    //frecuenciaLiteral = (checkMensual.checked) ? ( valuePlazo == 1 ) ?  " Mes" : " Meses" : ( valuePlazo == 1 ) ? " Quincena" : " Quincenas";
+
+    labelPlazoStart.innerHTML = cantidadCuotasMinimas + frecuenciaLiteral;
+    labelPlazoEnd.innerHTML = cantidadCuotasMaximas.toString() + frecuenciaLiteral;
+    pagoFrecuencia.innerHTML = "Cuota " + frecuencia;
+    pagoCuota.innerHTML = currency(parseFloat(montoCuota));
+
+
     inputMonto.setAttribute("value", monto);
     inputPlazo.setAttribute("value", valuePlazo);
     inputCuota.setAttribute("value", montoCuota);
