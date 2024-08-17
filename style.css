@@ -1,118 +1,112 @@
-/** {
-  border: 1px solid blue;
-}*/
 :root {
   --secondaryColor: #0066FF;
   --secondaryColorLight: #0066FF95;
   --white: #ffffff;
-  --analogoLight: #087BA6;
+  --analogousLight: #087BA6;
 }
 
-html{
-    font-family: Inter, Ubuntu, 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
+html {
+  font-family: Inter, Ubuntu, 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
 }
+
 body {
-    /*max-width: 580px;*/
+  max-width: 580px;
   
 }
-/*.cabecera {
+
+.header {
     background-color: var(--secondaryColor) !important;
     padding: 2rem;
     box-shadow: 0px 3px 5px 0px rgba(135,135,135,0.5);
-
-}*/
-.header h1 {
-    color: white;
 }
 
-/* Estilos del slider deslizante */
+.header h1 {
+  color: white;
+}
+
+/* Slider Styles */
 .slider-round {
-    height: 1.25rem;
-    border-radius: 2rem !important;
+  height: 1.25rem;
+  border-radius: 2rem !important;
 }
 
 .slider-round .noUi-target {
-    border-radius: 2rem !important;
-    border: 0 !important;
+  border-radius: 2rem !important;
+  border: 0 !important;
 }
 
 .slider-round .noUi-connect {
-    background: var(--secondaryColor);
-    border-style: none;
-    border-radius: 2rem;
-  }
-.slider-round .noUi-connects {
-    background: #EFF2F6;
-    border-radius: 2rem;
-    overflow: hidden;
-    z-index: 0;
+  background: var(--secondaryColor);
+  border-style: none;
+  border-radius: 2rem;
 }
-.slider-round .noUi-touch-area {
-    background: var(--secondaryColor);
-        border-radius: 2rem;
-    }
-.slider-round .noUi-touch-area:hover {
-    background: var(--secondaryColorLight);
-}
-            
-.slider-round .noUi-handle {
-    height: 2rem;
-    width: 2rem;
-    content: "";
-    top: -0.55rem;
-    /* right: -12px;  */
-    /* right is the half of the width*/
-    border: solid;
-    border-color: var(--white);
-    border-width: .3rem;
-    border-radius: 2rem;
-    box-shadow: 0px 2px 3px 0px rgba(135,135,135,0.5);
-}
-.slider-round .noUi-handle:active {
-    transform: scale(.9);
-}
-.slider-round .noUi-tooltip {
-    /* top: -2rem; */
-    /* bottom: initial; */
-    margin-top: .25rem;
-    margin-bottom: .25rem;
-    border: none;
-    color: var(--white);
-    background-color: var(--secondaryColor);
-    border-radius: .25rem1rem;
-    /*border-color: rgba(0, 143, 213, .5) ;*/
-    box-shadow: 0px 3px 5px 0px rgba(135,135,135,0.5);
-    opacity: 0.9;
-    transition: opacity 1s;
 
+.slider-round .noUi-connects {
+  background: #EFF2F6;
+  border-radius: 2rem;
+  overflow: hidden;
+  z-index: 0;
 }
-/*.slider-round .noUi-tooltip:hover {
-    border-color: var(--secondaryColor) ;
-    
-}*/
+
+.slider-round .noUi-touch-area {
+  background: var(--secondaryColor);
+  border-radius: 2rem;
+}
+
+.slider-round .noUi-touch-area:hover {
+  background: var(--secondaryColorLight);
+}
+
+.slider-round .noUi-handle {
+  height: 2rem;
+  width: 2rem;
+  content: "";
+  top: -0.55rem;
+  border: solid;
+  border-color: var(--white);
+  border-width: .3rem;
+  border-radius: 2rem;
+  box-shadow: 0px 2px 3px 0px rgba(135,135,135,0.5);
+}
+
+.slider-round .noUi-handle:active {
+  transform: scale(.9);
+}
+
+.slider-round .noUi-tooltip {
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+  border: none;
+  color: var(--white);
+  background-color: var(--secondaryColor);
+  border-radius: .25rem;
+  box-shadow: 0px 3px 5px 0px rgba(135,135,135,0.5);
+  opacity: 0.9;
+  transition: opacity 1s;
+}
 
 .slider-round .noUi-tooltip::after {
-    content: " ";
-    position: absolute;
-    top: 100%; /* parte inferior del tooltip */
-    left: 50%;
-    margin-left: -.375rem;
-    border-width: .375rem;
-    border-style: solid;
-    border-color: var(--secondaryColor) transparent transparent transparent;
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -.375rem;
+  border-width: .375rem;
+  border-style: solid;
+  border-color: var(--secondaryColor) transparent transparent transparent;
 }
 
 .slider-round .noUi-handle-lower::before {
-    display: none!important;
-}
-.slider-round .noUi-handle-lower::after {
-    display: none!important;
+  display: none!important;
 }
 
-.show-monto-cuota {
+.slider-round .noUi-handle-lower::after {
+  display: none!important;
+}
+
+.installmentAmount {
   color: var(--secondaryColor);
-  /*font-weight: bold;*/
   font-size: 1.5rem;
 }

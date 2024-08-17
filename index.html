@@ -1,106 +1,98 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slider</title>
+  <title>Loan Calculator</title>
 
-  <!-- Google-Fonts-Inter -->
+  <!-- Google Fonts Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 
   <!-- noUiSlider -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.js"></script>
 
-
   <!-- wNumb.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
-  <!--     <script src="js/wnumb.min.js"></script> -->
 
-  <!-- bootstrap 5.0 -->
+  <!-- Bootstrap 5.0 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
   <!-- Custom styles -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
   <div class="container">
     <div class="card border-0 overflow-visible mt-4">
-      <!--<div class="card-header cabecera p-3">
-                <h1 class="card-title text-white text-center ">¡Calcula tu pr&eacute;stamo aqu&iacute;!</h1>
-            </div>-->
+      <div class="card-header header p-3">
+                <h1 class="card-title text-white text-center ">Calculate Your Loan Here!</h1>
+            </div>
       <div class="card-body m-4">
         <div class="card-subtitle">
-          <p><strong>¿Cuánto dinero solicitas?</strong></p>
+          <p><strong>How much money do you need?</strong></p>
         </div>
-        <!-- form -->
-        <form id="myForm" action="" method="get">
+        <!-- Form -->
+        <form id="loanForm" action="" method="get">
 
-          <!--  -->
-          <!-- noUiSlider -->
-          <!-- Monto -->
+          <!-- Loan Amount Slider -->
           <div class="form-group mt-4">
-            <div class="slider-round" id="slider-round-1"></div>
+            <div class="slider-round" id="amountSlider"></div>
 
             <div class="card-text d-flex justify-content-between mt-3 mb-4">
               <p>$3,000.00</p>
               <p>$15,000.00</p>
             </div>
           </div>
-          <!--  -->
-          <!-- Plazo -->
+
+          <!-- Term Length Slider -->
           <div class="card-subtitle mb-4">
-            <p><strong>¿En cuantas cuotas?</strong></p>
+            <p><strong>In how many installments?</strong></p>
           </div>
           <div class="form-group mt-4">
-            <div class="slider-round" id="slider-round-2"></div>
+            <div class="slider-round" id="termSlider"></div>
 
             <div class="card-text d-flex justify-content-between mt-3">
-              <p id="labelPlazoStart" class="">4 Quincenas</p>
-              <p id="labelPlazoEnd" class="mb-4">24 Quincenas</p>
+              <p id="termLabelStart">4 Bi-weekly</p>
+              <p id="termLabelEnd" class="mb-4">24 Bi-weekly</p>
             </div>
           </div>
-          <!-- Result  -->
-          <div class="d-flex mt-3 mb-4 ">
-            <!-- checkboxes -->
+
+          <!-- Result Section -->
+          <div class="d-flex mt-3 mb-4">
+            <!-- Payment Frequency -->
             <div class="form-group w-50">
-              <p class="fw-bold">Frecuencia de Pago:*</p>
+              <p class="fw-bold">Payment Frequency:*</p>
               <div class="form-check form-check">
-                <input class="form-check-input" id="formCheckQuincenal" type="radio" name="frecuenciaPago"
-                  value="Quincenal" checked>
-                <label for="formCheckQuincenal" class="form-check-label">Quincenal</label>
+                <input class="form-check-input" id="biWeeklyCheck" type="radio" name="paymentFrequency" value="Bi-weekly" checked>
+                <label for="biWeeklyCheck" class="form-check-label">Bi-weekly</label>
               </div>
               <div class="form-check form-check mb-5">
-                <input class="form-check-input" id="formCheckMensual" type="radio" name="frecuenciaPago"
-                  value="Mensual">
-                <label for="formCheckMensual" class="form-check-label">Mensual</label>
+                <input class="form-check-input" id="monthlyCheck" type="radio" name="paymentFrequency" value="Monthly">
+                <label for="monthlyCheck" class="form-check-label">Monthly</label>
               </div>
             </div>
 
             <div class="card-text fw-bold w-50">
-              <p id="pagoFrecuencia">Cuota Quincenal</p>
-              <p class="show-monto-cuota me-5" id="pagoCuota">RD$1,065.00</p>
-              <input id="inputMonto" type="hidden" name="plazo" value="10000">
-              <input id="inputPlazo" type="hidden" name="plazo" value="14">
-              <input id="inputCuota" type="hidden" name="cuota" value="1065.00">
+              <p id="frequencyLabel">Bi-weekly Installment</p>
+              <p class="installmentAmount me-5" id="installmentAmount">$1,190.00</p>
+              <input id="amountInput" type="hidden" name="amount" value="0">
+              <input id="termInput" type="hidden" name="term" value="0">
+              <input id="installmentInput" type="hidden" name="installment" value="0.00">
             </div>
           </div>
-          <!-- //Result -->
-          <p class="text-secondary fst-italic mb-5">*Seleccione la frecuencia de pago según la forma en que le pagan su
-            salario, sea quincenal o mensual.</p>
+          <!-- End of Result Section -->
+          <p class="text-secondary fst-italic mb-5">*Select the payment frequency according to how you receive your salary, whether bi-weekly or monthly.</p>
 
           <div class="card-footer">
             <div class="form-group">
-              <input class="btn btn-primary w-100" type="submit" value="¡Quiero este préstamo!">
+              <input class="btn btn-primary w-100" type="submit" value="I want this loan!">
             </div>
           </div>
 
@@ -109,11 +101,9 @@
     </div>
   </div>
 
-
   <script src="main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

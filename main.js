@@ -1,130 +1,111 @@
 window.onload = function () {
 
-  // Scripts de los Sliders
-  const slider1 = document.querySelector('#slider-round-1');
-  const slider2 = document.querySelector('#slider-round-2');
+  // Slider Scripts
+  const amountSlider = document.querySelector('#amountSlider');
+  const termSlider = document.querySelector('#termSlider');
+  const termLabelStart = document.querySelector('#termLabelStart');
+  const termLabelEnd = document.querySelector('#termLabelEnd');
 
-  const inputMonto = document.querySelector('#inputMonto');
-  const inputPlazo = document.querySelector('#inputPlazo');
-  const inputCuota = document.querySelector('#inputCuota');
-  const pagoFrecuencia = document.querySelector('#pagoFrecuencia');
-  const pagoCuota = document.querySelector('#pagoCuota');
-  const checkMensual = document.querySelector('#formCheckMensual');
-  const checkQuincenal = document.querySelector('#formCheckQuincenal');
-  const labelPlazoStart = document.querySelector('#labelPlazoStart');
-  const labelPlazoEnd = document.querySelector('#labelPlazoEnd');
-  const gastosDeCierre = 500;
-  const tasaMensual = 0.06;
-  const tasaQuincenal = 0.03;
+  const amountInput = document.querySelector('#amountInput');
+  const termInput = document.querySelector('#termInput');
+  const installmentInput = document.querySelector('#installmentInput');
+  const frequencyLabel = document.querySelector('#frequencyLabel');
+  const installmentAmount = document.querySelector('#installmentAmount');
+  const monthlyCheck = document.querySelector('#monthlyCheck');
 
-  const currency = function (number) { return new Intl.NumberFormat('es-DO', { style: 'currency', currency: 'DOP', minimumFractionDigits: 2 }).format(number) }; // Funcion que sirve para dar formato de moneda local
+  // Constants
+  const [CLOSING_FEES, MONTHLY_RATE, BIWEEKLY_RATE] = [500, 0.06, 0.03];
 
-  let prestamo;
-  let interes;
-  let monto;
-  let plazo;
-  let tasa;
-  let frecuencia;
-  let frecuenciaLiteral;
-  let capitalCuota;
-  let montoCuota;
+  // Define minimum and maximum loan amounts
+  const amountRange = [3000, 15000];
 
-  // Slider 1
-  noUiSlider.create(slider1, {
-    start: [10000],
+  // Define loan term limits
+  const termRange = [4, 24];
+
+  // Configure amount slider
+  noUiSlider.create(amountSlider, {
+    start: 10000,
+    connect: 'lower',
     range: {
-      'min': 1000,
-      'max': 15000
+      'min': amountRange[0],
+      'max': amountRange[1]
     },
     step: 1000,
-    padding: [2000, 0],
-    connect: 'lower',
     tooltips: wNumb({
-      mark: '.',
-      thousand: ',',
+      prefix: '$',
       decimals: 2,
-      prefix: 'RD$'
+      thousand: ','
     })
   });
 
-  // Slider 2
-  noUiSlider.create(slider2, {
-    range: {
-      'min': 4,
-      'max': 24
-    },
-    start: [12],
-    step: 1,
+  // Configure term slider
+  noUiSlider.create(termSlider, {
+    start: 12,
     connect: 'lower',
+    range: {
+      'min': termRange[0],
+      'max': termRange[1]
+    },
+    step: 1,
     tooltips: wNumb({
-      decimals: 0,
-      suffix: ' Quincenas',
+      decimals: 0
     })
   });
 
-  slider1.noUiSlider.on('change.one', calcularCuota);
-  slider2.noUiSlider.on('change.one', calcularCuota);
-  checkMensual.addEventListener('change', calcularCuota);
-  checkQuincenal.addEventListener('change', calcularCuota);
+  // Set slider values on input
+  amountSlider.noUiSlider.on('update', function (values, handle) {
+    amountInput.value = parseFloat(values[handle].replace(/[\$,]/g, ''));
+    updateInstallmentAmount();
+  });
 
-  function calcularCuota() {
+  termSlider.noUiSlider.on('update', function (values, handle) {
+    termInput.value = parseInt(values[handle]);
+    updateInstallmentAmount();
+  });
 
-    cantidadCuotasMinimas = (checkMensual.checked) ? 2 : 4;
-    cantidadCuotasMaximas = (checkMensual.checked) ? 12 : 24;
-    frecuenciaLiteral = (checkMensual.checked) ? " Meses" : " Quincenas";
+  // Calculate the installment amount
+  function updateInstallmentAmount() {
 
-    slider2.noUiSlider.updateOptions({
-      range: {
-        'min': cantidadCuotasMinimas,
-        'max': cantidadCuotasMaximas
-      },
-      tooltips: wNumb({ decimals: 0, suffix: frecuenciaLiteral })
-    });
+    let installment = 0;
+    const amount = parseFloat(amountInput.value);
+    const term = parseInt(termInput.value);
 
-    monto = parseInt(slider1.noUiSlider.get());
-    valuePlazo = parseInt(slider2.noUiSlider.get());
-    //console.log(valuePlazo);
+    if (monthlyCheck.checked) {
+      frequencyLabel.innerHTML = "Monthly Installment";
+      termLabelStart.innerHTML = "2 Months";
+      termLabelEnd.innerHTML = "12 Months";
+      installment = ((amount + CLOSING_FEES) / term) + ((amount + CLOSING_FEES) * MONTHLY_RATE);
+      // termRange = [2, 12];
 
-    //console.log(monto);
-    prestamo = monto + gastosDeCierre;
-    //console.log(prestamo);
-    tasa = (checkMensual.checked ? tasaMensual : tasaQuincenal);
-    frecuencia = (checkMensual.checked ? "Mensual" : "Quincenal");
+    } else {
+      frequencyLabel.innerHTML = "Bi-weekly Installment";
+      termLabelStart.innerHTML = "4 Bi-weeks";
+      termLabelEnd.innerHTML = "24 Bi-weeks";
+      installment = ((amount + CLOSING_FEES) / term) + ((amount + CLOSING_FEES) * BIWEEKLY_RATE);
+      // termRange = [4, 24];
 
-    capitalCuota = prestamo / valuePlazo;
-    // console.log(capitalCuota);   
-    interes = prestamo * tasa;
-    // console.log(interes);   
-    montoCuota = (capitalCuota + interes).toFixed(2);
-    //console.log(montoCuota);
+    }
 
-    // Codigo para manejar casos de nombre en singular. 1 mes o quinecana
-    //frecuenciaLiteral = (checkMensual.checked) ? ( valuePlazo == 1 ) ?  " Mes" : " Meses" : ( valuePlazo == 1 ) ? " Quincena" : " Quincenas";
+    // termSlider.noUiSlider.updateOptions({
+    //   range: {
+    //     'min': termRange[0],
+    //     'max': termRange[1]
+    //   }
+    // });
 
-    labelPlazoStart.innerHTML = cantidadCuotasMinimas + frecuenciaLiteral;
-    labelPlazoEnd.innerHTML = cantidadCuotasMaximas.toString() + frecuenciaLiteral;
-    pagoFrecuencia.innerHTML = "Cuota " + frecuencia;
-    pagoCuota.innerHTML = currency(parseFloat(montoCuota));
-
-
-    inputMonto.setAttribute("value", monto);
-    inputPlazo.setAttribute("value", valuePlazo);
-    inputCuota.setAttribute("value", montoCuota);
+    installmentAmount.innerHTML = wNumb({
+      prefix: '$',
+      decimals: 2,
+      thousand: ','
+    }).to(installment);
+    installmentInput.value = installment.toFixed(2);
   }
 
-  const myForm = document.querySelector('#myForm');
-  myForm.addEventListener('submit', function (e) {
-    e.preventDefault();
+  // Add event listener to payment frequency radio buttons
+  const paymentFrequencyRadios = document.getElementsByName('paymentFrequency');
+  paymentFrequencyRadios.forEach(checkbox => checkbox.addEventListener('change', updateInstallmentAmount));
 
-    const inputMonto = this.inputMonto.value;
-    const inputPlazo = this.inputPlazo.value;
-    const inputCuota = this.inputCuota.value;
-    const frecuencia = this.frecuenciaPago.value;
-    const url = `WEBSITE.COM/formulario/?precalculado=si&frecuencia=${frecuencia}&monto=${inputMonto}&plazo=${inputPlazo}&cuota=${inputCuota}`
+  // Initialize installment amount on page load
+  // updateInstallmentAmount();
 
-    //this.action = url;
-    //this.submit();
-    window.location.href = url;
-  });
-
-}
+};
