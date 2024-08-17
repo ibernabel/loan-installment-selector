@@ -6,4 +6,5 @@ The loan installment is calculated based on a simple linear interest rate of 3% 
 
 [CodePen](https://codepen.io/idequel-bernabel/pen/GRQddOK)
 
-![image](https://github.com/user-attachments/assets/cc148a44-3db2-4e3b-b6aa-00a56b35f795)
+![Screenshot_16-8-2024_225514_prestamos solufime com](https://github.com/user-attachments/assets/f3ab8fc7-8282-4f81-902f-c23c5b869267)
+
