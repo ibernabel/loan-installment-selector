@@ -120,7 +120,7 @@ window.onload = function () {
     const inputPlazo = this.inputPlazo.value;
     const inputCuota = this.inputCuota.value;
     const frecuencia = this.frecuenciaPago.value;
-    const url = `https://pro.solufime.com/solicitarprestamo/?precalculado=si&frecuencia=${frecuencia}&monto=${inputMonto}&plazo=${inputPlazo}&cuota=${inputCuota}`
+    const url = `WEBSITE.COM/formulario/?precalculado=si&frecuencia=${frecuencia}&monto=${inputMonto}&plazo=${inputPlazo}&cuota=${inputCuota}`
 
     //this.action = url;
     //this.submit();
